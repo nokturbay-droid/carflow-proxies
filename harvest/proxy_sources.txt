@@ -1,0 +1,179 @@
+# Источники бесплатных прокси (протокол URL). Дополняется вручную/агентом.
+http TheSpeedX/PROXY-List/master/http.txt https://raw.githubusercontent.com/
+socks4 TheSpeedX/PROXY-List/master/socks4.txt https://raw.githubusercontent.com/
+socks5 TheSpeedX/PROXY-List/master/socks5.txt https://raw.githubusercontent.com/
+http monosans/proxy-list/main/proxies/http.txt https://raw.githubusercontent.com/
+socks4 monosans/proxy-list/main/proxies/socks4.txt https://raw.githubusercontent.com/
+socks5 monosans/proxy-list/main/proxies/socks5.txt https://raw.githubusercontent.com/
+http proxifly/free-proxy-list/main/proxies/protocols/http/data.txt https://raw.githubusercontent.com/
+socks4 proxifly/free-proxy-list/main/proxies/protocols/socks4/data.txt https://raw.githubusercontent.com/
+socks5 proxifly/free-proxy-list/main/proxies/protocols/socks5/data.txt https://raw.githubusercontent.com/
+http vakhov/fresh-proxy-list/master/http.txt https://raw.githubusercontent.com/
+http vakhov/fresh-proxy-list/master/https.txt https://raw.githubusercontent.com/
+socks4 vakhov/fresh-proxy-list/master/socks4.txt https://raw.githubusercontent.com/
+socks5 vakhov/fresh-proxy-list/master/socks5.txt https://raw.githubusercontent.com/
+http zloi-user/hideip.me/main/http.txt https://raw.githubusercontent.com/
+socks4 zloi-user/hideip.me/main/socks4.txt https://raw.githubusercontent.com/
+socks5 zloi-user/hideip.me/main/socks5.txt https://raw.githubusercontent.com/
+http roosterkid/openproxylist/main/HTTPS_RAW.txt https://raw.githubusercontent.com/
+socks4 roosterkid/openproxylist/main/SOCKS4_RAW.txt https://raw.githubusercontent.com/
+socks5 roosterkid/openproxylist/main/SOCKS5_RAW.txt https://raw.githubusercontent.com/
+socks5 hookzof/socks5_list/master/proxy.txt https://raw.githubusercontent.com/
+http clarketm/proxy-list/master/proxy-list-raw.txt https://raw.githubusercontent.com/
+http ShiftyTR/Proxy-List/master/http.txt https://raw.githubusercontent.com/
+http ShiftyTR/Proxy-List/master/https.txt https://raw.githubusercontent.com/
+socks4 ShiftyTR/Proxy-List/master/socks4.txt https://raw.githubusercontent.com/
+socks5 ShiftyTR/Proxy-List/master/socks5.txt https://raw.githubusercontent.com/
+http mmpx12/proxy-list/master/http.txt https://raw.githubusercontent.com/
+http mmpx12/proxy-list/master/https.txt https://raw.githubusercontent.com/
+socks4 mmpx12/proxy-list/master/socks4.txt https://raw.githubusercontent.com/
+socks5 mmpx12/proxy-list/master/socks5.txt https://raw.githubusercontent.com/
+http sunny9577/proxy-scraper/master/generated/http_proxies.txt https://raw.githubusercontent.com/
+socks4 sunny9577/proxy-scraper/master/generated/socks4_proxies.txt https://raw.githubusercontent.com/
+socks5 sunny9577/proxy-scraper/master/generated/socks5_proxies.txt https://raw.githubusercontent.com/
+http MuRongPIG/Proxy-Master/main/http.txt https://raw.githubusercontent.com/
+socks4 MuRongPIG/Proxy-Master/main/socks4.txt https://raw.githubusercontent.com/
+socks5 MuRongPIG/Proxy-Master/main/socks5.txt https://raw.githubusercontent.com/
+http officialputuid/KangProxy/KangProxy/http/http.txt https://raw.githubusercontent.com/
+socks4 officialputuid/KangProxy/KangProxy/socks4/socks4.txt https://raw.githubusercontent.com/
+socks5 officialputuid/KangProxy/KangProxy/socks5/socks5.txt https://raw.githubusercontent.com/
+http Zaeem20/FREE_PROXIES_LIST/master/http.txt https://raw.githubusercontent.com/
+http Zaeem20/FREE_PROXIES_LIST/master/https.txt https://raw.githubusercontent.com/
+socks4 Zaeem20/FREE_PROXIES_LIST/master/socks4.txt https://raw.githubusercontent.com/
+socks5 Zaeem20/FREE_PROXIES_LIST/master/socks5.txt https://raw.githubusercontent.com/
+http iplocate/free-proxy-list/main/protocols/http.txt https://raw.githubusercontent.com/
+socks4 iplocate/free-proxy-list/main/protocols/socks4.txt https://raw.githubusercontent.com/
+socks5 iplocate/free-proxy-list/main/protocols/socks5.txt https://raw.githubusercontent.com/
+http gfpcom/free-proxy-list/main/list/http.txt https://raw.githubusercontent.com/
+socks5 gfpcom/free-proxy-list/main/list/socks5.txt https://raw.githubusercontent.com/
+http dpangestuw/Free-Proxy/main/http_proxies.txt https://raw.githubusercontent.com/
+socks4 dpangestuw/Free-Proxy/main/socks4_proxies.txt https://raw.githubusercontent.com/
+socks5 dpangestuw/Free-Proxy/main/socks5_proxies.txt https://raw.githubusercontent.com/
+http r00tee/Proxy-List/main/Https.txt https://raw.githubusercontent.com/
+socks4 r00tee/Proxy-List/main/Socks4.txt https://raw.githubusercontent.com/
+socks5 r00tee/Proxy-List/main/Socks5.txt https://raw.githubusercontent.com/
+http ProxyScraper/ProxyScraper/main/http.txt https://raw.githubusercontent.com/
+socks4 ProxyScraper/ProxyScraper/main/socks4.txt https://raw.githubusercontent.com/
+socks5 ProxyScraper/ProxyScraper/main/socks5.txt https://raw.githubusercontent.com/
+# --- гео-списки KR/AE/GE и большие списки (найдены агентом) ---
+mixed https://raw.githubusercontent.com/xyzs996/free-proxy-health-list/main/proxies/countries/kr/data.txt # KR ip:port ~99, health-checked
+mixed https://raw.githubusercontent.com/xyzs996/free-proxy-health-list/main/proxies/countries/ae/data.txt # AE ~5
+mixed https://raw.githubusercontent.com/xyzs996/free-proxy-health-list/main/proxies/countries/ge/data.txt # GE ~1
+mixed https://raw.githubusercontent.com/xyzs996/free-proxy-health-list/main/proxies/all/data.csv # общий CSV: proxy,protocol,country,anonymity,latency,reliability (5.3k)
+mixed https://raw.githubusercontent.com/hproxy-com/free-proxy-list/main/by-country/KR.txt # KR ip:port ~276
+mixed https://raw.githubusercontent.com/hproxy-com/free-proxy-list/main/by-country/AE.txt # AE ~30
+mixed https://raw.githubusercontent.com/hproxy-com/free-proxy-list/main/by-country/GE.txt # GE ~28
+mixed https://raw.githubusercontent.com/hproxy-com/free-proxy-list/main/all.csv # общий CSV ip,port,protocols,anonymity,country,latency,uptime_pct (43k)
+mixed https://raw.githubusercontent.com/hproxy-com/free-proxy-list/main/live.csv # только alive, тот же формат (7.6k)
+mixed https://raw.githubusercontent.com/Ch4120N/Ch4120N-Proxy-List/master/countries/KR/proxies.txt # KR ~256, с префиксом scheme://
+mixed https://raw.githubusercontent.com/Ch4120N/Ch4120N-Proxy-List/master/countries/AE/proxies.txt # AE ~106, scheme://
+mixed https://raw.githubusercontent.com/Ch4120N/Ch4120N-Proxy-List/master/countries/GE/proxies.txt # GE ~15, scheme://
+http https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/KR/http.txt # KR ~216
+https https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/KR/https.txt # KR ~9
+socks4 https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/KR/socks4.txt # KR ~8
+socks5 https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/KR/socks5.txt # KR ~12
+http https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/AE/http.txt # AE ~162
+https https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/AE/https.txt # AE ~3
+socks5 https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/AE/socks5.txt # AE ~1
+http https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/GE/http.txt # GE ~5
+https https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/GE/https.txt # GE ~5
+socks4 https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/GE/socks4.txt # GE ~1
+http https://raw.githubusercontent.com/databay-labs/free-proxy-list/master/by-country/kr/http.txt # KR ~5
+socks5 https://raw.githubusercontent.com/databay-labs/free-proxy-list/master/by-country/kr/socks5.txt # KR ~20
+http https://raw.githubusercontent.com/databay-labs/free-proxy-list/master/by-country/ae/http.txt # AE ~2
+socks5 https://raw.githubusercontent.com/databay-labs/free-proxy-list/master/by-country/ae/socks5.txt # AE ~3
+http https://raw.githubusercontent.com/databay-labs/free-proxy-list/master/by-country/ge/http.txt # GE ~7
+mixed https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/main/proxies/countries/kr/data.txt # KR ~24, scheme://
+mixed https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/main/proxies/countries/ae/data.txt # AE ~4, scheme://
+mixed https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/main/proxies/countries/ge/data.txt # GE ~3, scheme://
+mixed https://raw.githubusercontent.com/litportnet/free-proxy-list/main/proxies/countries/kr/all.txt # KR ~13, scheme://
+mixed https://raw.githubusercontent.com/litportnet/free-proxy-list/main/proxies/countries/ae/all.txt # AE ~4, scheme://
+mixed https://raw.githubusercontent.com/litportnet/free-proxy-list/main/proxies/all.csv # общий CSV с country/latency/uptime/anonymity (2.4k)
+mixed https://raw.githubusercontent.com/proxygenerator1/ProxyGenerator/main/Stable/country/South%20Korea/ALL.txt # KR ~21
+mixed https://raw.githubusercontent.com/proxygenerator1/ProxyGenerator/main/MostStable/country/South%20Korea/ALL.txt # KR ~6 самые стабильные
+mixed https://raw.githubusercontent.com/proxygenerator1/ProxyGenerator/main/Stable/country/United%20Arab%20Emirates/ALL.txt # AE ~1
+mixed https://raw.githubusercontent.com/proxygenerator1/ProxyGenerator/main/Stable/country/Georgia/ALL.txt # GE ~1
+mixed https://raw.githubusercontent.com/proxygenerator1/ProxyGenerator/main/ALL/all.json # общий JSON: country, ping, status (2.9k)
+mixed https://raw.githubusercontent.com/proxy-free/free-proxy-list/main/proxies.json # общий JSON: country_code, anonymity, uptime (2.4k)
+mixed https://raw.githubusercontent.com/rix4uni/fresh-proxy-list/main/proxylist.txt # огромный ip:port без гео (294k)
+mixed https://raw.githubusercontent.com/SoliSpirit/proxy-list/main/http.txt # без гео, 142k (также socks4.txt/socks5.txt)
+mixed https://raw.githubusercontent.com/TuanMinPay/live-proxy/master/socks5.txt # без гео, socks5 24k (также http.txt 8k)
+# --- добавлено workflow ---
+mixed https://raw.githubusercontent.com/proxifly/free-proxy-list/main/proxies/countries/KR/data.txt # ~107 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/proxifly/free-proxy-list/main/proxies/countries/AE/data.txt # ~52 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/proxifly/free-proxy-list/main/proxies/countries/GE/data.txt # ~9 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/proxifly/free-proxy-list/main/proxies/all/data.txt # ~27920 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/iplocate/free-proxy-list/main/countries/KR/proxies.txt # ~3 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/Thordata/awesome-free-proxy-list/main/proxies/all.txt # ~138 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/stormsia/proxy-list/main/working_proxies.txt # ~2690 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/stormsia/proxy-list/main/http.txt # ~1171 ip:port, свежий 25.09
+socks4 https://raw.githubusercontent.com/stormsia/proxy-list/main/socks4.txt # ~213 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/stormsia/proxy-list/main/socks5.txt # ~1374 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/komutan234/Proxy-List-Free/main/proxies/http.txt # ~3458 ip:port, свежий 25.09
+socks4 https://raw.githubusercontent.com/komutan234/Proxy-List-Free/main/proxies/socks4.txt # ~2532 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/komutan234/Proxy-List-Free/main/proxies/socks5.txt # ~4061 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/proxio-io/proxy-list/main/http.txt # ~10934 ip:port, свежий 25.09
+socks4 https://raw.githubusercontent.com/proxio-io/proxy-list/main/socks4.txt # ~1428 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/proxio-io/proxy-list/main/socks5.txt # ~19476 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/Skillter/ProxyGather/refs/heads/master/proxies/working-proxies-all.txt # ~580 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/Skillter/ProxyGather/refs/heads/master/proxies/working-proxies-socks5.txt # ~277 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/RioMMO/ProxyFree/refs/heads/main/ALL_PROXY.txt # ~2004 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/RioMMO/ProxyFree/refs/heads/main/HTTP.txt # ~936 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/RioMMO/ProxyFree/refs/heads/main/SOCKS5.txt # ~760 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/proxmint/free-proxy-list/main/proxies/http.txt # ~493 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/proxmint/free-proxy-list/main/proxies/socks5.txt # ~459 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/LoneKingCode/free-proxy-db/refs/heads/main/proxies/all.txt # ~257 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/ErcinDedeoglu/proxies/main/proxies/https.txt # ~3212 ip:port, свежий 25.09
+socks4 https://raw.githubusercontent.com/ErcinDedeoglu/proxies/main/proxies/socks4.txt # ~22146 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/VPSLabCloud/VPSLab-Free-Proxy-List/main/http_all.txt # ~881 ip:port, свежий 25.09
+socks4 https://raw.githubusercontent.com/VPSLabCloud/VPSLab-Free-Proxy-List/main/socks4_all.txt # ~260 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/VPSLabCloud/VPSLab-Free-Proxy-List/main/socks5_all.txt # ~2000 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/VPSLabCloud/VPSLab-Free-Proxy-List/main/all_proxies.txt # ~1927 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/Vann-Dev/proxy-list/main/proxies/http.txt # ~866 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/Vann-Dev/proxy-list/main/proxies/https.txt # ~100 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/andigwandi/free-proxy/main/proxy_list.txt # ~842 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/berkay-digital/Proxy-Scraper/main/proxies.txt # ~184 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/Skillter/ProxyGather/refs/heads/master/proxies/working-proxies-http.txt # ~283 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/proxyscrape/free-proxy-list/main/proxies/all/data.csv # ~4208 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/MohammadKobirShah/ProxyScraper-Pro/main/output/proxies_all.csv # ~1076 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/MohammadKobirShah/ProxyScraper-Pro/main/proxies/live_proxies_detailed.txt # ~854 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/theriturajps/proxy-list/main/proxies.json # ~5558 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/proxy.txt # ~1892 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/abusaeeidx/TazaProxy-Troxy/main/working_proxies.json # ~500 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/anutmagang/Free-HighQuality-Proxy-Socks/main/results/all.txt # ~398 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/anutmagang/Free-HighQuality-Proxy-Socks/main/results/hunted/hunted_elite.txt # ~8403 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/b4mbo-o/Check-Free-Proxy/main/alive_http.txt # ~34 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/b4mbo-o/Check-Free-Proxy/main/alive_socks5.txt # ~137 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/HankNovic/ProxyClean/main/SOCKS5.txt # ~100 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/Moleway/Free-Proxy-List/main/http.txt # ~1115 ip:port, свежий 25.09
+socks4 https://raw.githubusercontent.com/Moleway/Free-Proxy-List/main/socks4.txt # ~244 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/Moleway/Free-Proxy-List/main/socks5.txt # ~473 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/Cheagjihvg/simple-proxylist/main/http.txt # ~27649 ip:port, свежий 25.09
+socks4 https://raw.githubusercontent.com/Cheagjihvg/simple-proxylist/main/socks4.txt # ~5262 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/Cheagjihvg/simple-proxylist/main/socks5.txt # ~17088 ip:port, свежий 25.09
+socks4 https://raw.githubusercontent.com/proxmint/free-proxy-list/main/proxies/socks4.txt # ~277 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/Tianndev/free-proxy/main/proxy/http.txt # ~9281 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/Tianndev/free-proxy/main/proxy/socks5.txt # ~4767 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/6yyn/free-proxy-list/main/http.txt # ~912 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/gnxD3RfTT2WE/daily-updated-proxy-list/main/http.txt # ~500 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/gnxD3RfTT2WE/daily-updated-proxy-list/main/socks5.txt # ~500 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/notthinks/proxy-lists/main/alive.txt # ~536 ip:port, свежий 25.09
+socks5 https://raw.githubusercontent.com/fmw86/free-proxy-pool/main/socks5_fast.txt # ~384 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/BlacKSnowDot0/Proxy-Pulse/main/all.txt # ~441 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/Ch4120N/Ch4120N-Proxy-List/master/countries/JP/proxies.txt # ~165 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/Ch4120N/Ch4120N-Proxy-List/master/countries/TR/proxies.txt # ~124 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/Ch4120N/Ch4120N-Proxy-List/master/countries/AM/proxies.txt # ~27 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/Ch4120N/Ch4120N-Proxy-List/master/countries/SA/proxies.txt # ~4 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/xyzs996/free-proxy-health-list/main/proxies/countries/jp/data.txt # ~112 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/xyzs996/free-proxy-health-list/main/proxies/countries/tr/data.txt # ~51 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/proxifly/free-proxy-list/main/proxies/countries/JP/data.txt # ~129 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/proxifly/free-proxy-list/main/proxies/countries/TR/data.txt # ~106 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/proxifly/free-proxy-list/main/proxies/countries/AM/data.txt # ~24 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/proxifly/free-proxy-list/main/proxies/countries/SA/data.txt # ~4 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/JP/http.txt # ~168 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/vmheaven/VMHeaven.io-Free-Proxy-List/main/Country/TR/http.txt # ~49 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/databay-labs/free-proxy-list/master/by-country/tr/http.txt # ~83 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/databay-labs/free-proxy-list/master/by-country/am/http.txt # ~5 ip:port, свежий 25.09
+http https://raw.githubusercontent.com/databay-labs/free-proxy-list/master/by-country/jp/http.txt # ~13 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/main/proxies/countries/tr/data.txt # ~27 ip:port, свежий 25.09
+mixed https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/main/proxies/countries/jp/data.txt # ~17 ip:port, свежий 25.09
