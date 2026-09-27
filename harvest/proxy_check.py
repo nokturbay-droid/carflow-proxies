@@ -15,7 +15,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from proxy_harvest import REGIONS, _raise_nofile, site_ok  # noqa: E402
+from proxy_harvest import REGIONS, _raise_nofile, pmap, site_ok  # noqa: E402
 
 
 def main() -> int:
@@ -45,8 +45,7 @@ def main() -> int:
         return all(site_ok(r[0], s, 15) is not None
                    for g in r[1].split(",") for s in REGIONS[g].values())
 
-    with cf.ThreadPoolExecutor(len(sample) or 1) as ex:
-        good = sum(ex.map(one, sample))
+    good = sum(1 for r in pmap(one, sample, len(sample) or 1, 300) if r)
     pct = 100 * good // len(sample) if sample else 0
     print(f"выборка: {good} из {len(sample)} прямо сейчас пускают на сайты ({pct} %)")
     bad = age_h > 26 or len(rows) < 20 or pct < 50
@@ -55,4 +54,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    import os
+    rc = main()
+    sys.stdout.flush()
+    os._exit(rc)  # брошенные по сроку потоки не держат выход

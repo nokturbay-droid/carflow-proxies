@@ -3,7 +3,9 @@ name: harvest
 # (Корея: encar, kbcha; ОАЭ: dubicars, dubizzle; Грузия: myauto) и коммитит результат в proxies/.
 on:
   schedule:
-    - cron: "0 0 * * *"   # 00:00 UTC = 06:00 Бишкек
+    # Дважды в сутки и не в :00 — ровные часы у GitHub перегружены (27.09 запуск на 00:00 стартовал в 04:19).
+    - cron: "17 21 * * *"  # 21:17 UTC = 03:17 Бишкек — к таймеру бокса 07:30 список уже свежий
+    - cron: "43 9 * * *"   # 09:43 UTC — запасной, если ночной не стартовал
   workflow_dispatch:
 permissions:
   contents: write

@@ -140,9 +140,27 @@ def _atomic(path: Path, text: str) -> None:
     tmp.replace(path)
 
 
-def pmap(fn, items, workers):
-    with cf.ThreadPoolExecutor(workers) as ex:
-        return list(ex.map(fn, items))
+def pmap(fn, items, workers, deadline_s: float):
+    """Параллельно, но с ЖЁСТКИМ общим сроком на этап.
+
+    Таймаут requests — на каждую операцию сокета, не на весь запрос: прокси, отдающий ответ по
+    байту, держит поток бесконечно (так 27.09 ночной запуск завис на 2,5 ч и был оборван GitHub).
+    По сроку недоделанное считается «не прошло», зависшие потоки бросаются (выход — os._exit).
+    Возвращает результаты в порядке завершения (None — не успел / упал)."""
+    ex = cf.ThreadPoolExecutor(workers)
+    futs = [ex.submit(fn, it) for it in items]
+    out, late = [], 0
+    try:
+        for f in cf.as_completed(futs, timeout=deadline_s):
+            try:
+                out.append(f.result())
+            except Exception:
+                out.append(None)
+    except cf.TimeoutError:
+        late = sum(1 for f in futs if not f.done())
+        print(f"  срок этапа {int(deadline_s)} с вышел: {late} проверок брошены как «не прошли»", flush=True)
+    ex.shutdown(wait=False, cancel_futures=True)
+    return out
 
 
 def _raise_nofile() -> None:
@@ -162,18 +180,21 @@ def main() -> None:
     ap.add_argument("--out", default="research/proxies")
     ap.add_argument("--sources", default=str(ROOT / "proxy_sources.txt"))
     ap.add_argument("--workers", type=int, default=1500)
+    ap.add_argument("--alive-deadline", type=float, default=2400, help="секунд на этап «живой?»")
+    ap.add_argument("--round-deadline", type=float, default=900, help="секунд на раунд сайтов")
     a = ap.parse_args()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     state_f = out / "state.json"
     prev = json.loads(state_f.read_text()) if state_f.exists() else {}
 
-    cands = fetch_candidates(load_sources(Path(a.sources)))
-    for p in prev:  # прошлые стабильные перепроверяем всегда
-        cands.setdefault(p, None)
+    # Прошлые стабильные — В НАЧАЛО очереди: при общем сроке этапа недоделанное отбрасывается, и
+    # лучшие известные адреса не должны оказаться в хвосте, который не успели проверить.
+    cands: dict[str, None] = dict.fromkeys(prev)
+    cands.update(fetch_candidates(load_sources(Path(a.sources))))
     print(f"кандидатов: {len(cands)} (из них прошлых стабильных: {len(prev)})", flush=True)
 
-    ok = [r for r in pmap(lambda u: alive(u, 5), list(cands), a.workers) if r]
+    ok = [r for r in pmap(lambda u: alive(u, 5), list(cands), a.workers, a.alive_deadline) if r]
     country = dict(ok)
     print(f"живых: {len(ok)}", flush=True)
     meta_f = out / "last_run.json"
@@ -189,7 +210,8 @@ def main() -> None:
     for rnd in range(1, a.rounds + 1):
         if rnd > 1:
             time.sleep(a.gap)
-        res = pmap(lambda u: (u, check_regions(u, 12)), survivors, min(a.workers, 400))
+        res = [r for r in pmap(lambda u: (u, check_regions(u, 12)), survivors, min(a.workers, 400),
+                              a.round_deadline) if r]
         nxt = []
         for u, regs in res:
             if rnd == 1:
@@ -229,4 +251,14 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import os
+    import sys
+    try:
+        main()
+        code = 0
+    except SystemExit as e:
+        code = e.code if isinstance(e.code, int) else 1
+    sys.stdout.flush()
+    sys.stderr.flush()
+    # os._exit: брошенные по сроку потоки не дают интерпретатору завершиться (ждёт их при выходе).
+    os._exit(code)
