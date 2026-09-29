@@ -77,6 +77,13 @@ US_BODY = {"query": ["*"], "filter": {"VEHT": ["vehicle_type_code:VEHTYPE_V"]},
 #: Адрес, прошедший проверку другим отпечатком (Chrome, HTTP/2), CRM мог бы и не пропустить — Imperva
 #: сверяет отпечаток; а HTTP/2 у curl_cffi однажды ронял процесс целиком (SIGSEGV в nghttp2).
 US_PROFILES = ("safari17_0", "safari17_2_ios", "safari18_0", "safari18_0_ios")
+#: Encar — тоже не главная, а API, куда реально ходит воркер каталога (catalog_encar/sync.sweep_new):
+#: у api.encar.com своя защита, и адрес, пускающий на главную, на API часто получает 404 (замер
+#: 2026-09-29: из 60 адресов site_encar, отобранных по главной, API ответил списком ~7, 404 — 20+).
+#: Один такой адрес в пуле валит задание «новые машины» целиком.
+ENCAR_API = ("https://api.encar.com/search/car/list/general?count=true&q=(And.Hidden.N._.SellType."
+             "%EC%9D%BC%EB%B0%98._.ServiceCopyCar.ORIGINAL.)&sr=%7CModifiedDate%7C0%7C20")
+ENCAR_HEADERS = {"Accept": "application/json, text/plain, */*", "Referer": "https://www.encar.com/"}
 ALL_REGIONS = [*REGIONS, "US"]
 #: сайт -> регион, и регион -> его сайты (США — один «сайт» copart, проверяемый поиском).
 SITE_URL: dict[str, str] = {site: url for sites in REGIONS.values() for site, url in sites.items()}
@@ -183,6 +190,26 @@ def us_ok(url: str, timeout: float) -> int | None:
     return None
 
 
+def encar_ok(url: str, timeout: float) -> int | None:
+    """Мс ответа, если API encar через адрес вернул список машин (Count > 0); иначе None."""
+    t0 = time.monotonic()
+    try:
+        with creq.Session(impersonate=random.choice(US_PROFILES), http_version=CurlHttpVersion.V1_1,
+                          proxies={"http": url, "https": url}, timeout=timeout) as s:
+            r = s.get(ENCAR_API, headers=ENCAR_HEADERS)
+    except CurlRequestError:
+        return None
+    if r.status_code != 200:
+        return None
+    try:
+        data = r.json()
+    except ValueError:
+        return None
+    if (data.get("Count") or 0) > 0 and data.get("SearchResults"):
+        return int((time.monotonic() - t0) * 1000)
+    return None
+
+
 def check_sites(url: str, timeout: float, cc: str = "??",
                 only: set[str] | None = None) -> dict[str, int]:
     """Сайт -> мс ответа, для сайтов, куда адрес пустили. ``only`` — проверять только эти (раунды 2+
@@ -193,6 +220,8 @@ def check_sites(url: str, timeout: float, cc: str = "??",
             continue
         if site == "copart":
             t = us_ok(url, timeout) if cc == "US" else None
+        elif site == "encar":
+            t = encar_ok(url, timeout)
         else:
             t = site_ok(url, SITE_URL[site], timeout)
         if t is not None:

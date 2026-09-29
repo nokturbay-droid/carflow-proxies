@@ -15,7 +15,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from proxy_harvest import REGIONS, _raise_nofile, pmap, site_ok, us_ok  # noqa: E402
+from proxy_harvest import REGIONS, _raise_nofile, encar_ok, pmap, site_ok, us_ok  # noqa: E402
 
 
 def main() -> int:
@@ -43,7 +43,8 @@ def main() -> int:
 
     def one(r: list[str]) -> bool:
         return all((us_ok(r[0], 15) is not None) if g == "US" else
-                   all(site_ok(r[0], s, 15) is not None for s in REGIONS[g].values())
+                   all((encar_ok(r[0], 15) if name == "encar" else site_ok(r[0], s, 15)) is not None
+                       for name, s in REGIONS[g].items())
                    for g in r[1].split(","))
 
     res = pmap(lambda r: (r, one(r)), sample, len(sample) or 1, 300)
