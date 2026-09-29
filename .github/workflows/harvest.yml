@@ -1,36 +1,72 @@
 name: harvest
-# Раз в сутки собирает бесплатные прокси с GitHub-списков, проверяет их на сайтах каталога
-# (Корея: encar, kbcha; ОАЭ: dubicars, dubizzle; Грузия: myauto) и коммитит результат в proxies/.
+# Каждые 4 часа собирает бесплатные прокси с GitHub-списков (сотни тысяч кандидатов), проверяет их
+# на сайтах каталога (Корея: encar, kbcha; ОАЭ: dubicars, dubizzle; Грузия: myauto; США: поиск
+# Copart) и коммитит результат в proxies/. Проверка разбита на 8 параллельных осколков — одной
+# машине сотни тысяч адресов за срок не проверить; для публичного репозитория минуты бесплатны.
 on:
   schedule:
-    # Дважды в сутки и не в :00 — ровные часы у GitHub перегружены (27.09 запуск на 00:00 стартовал в 04:19).
-    - cron: "17 21 * * *"  # 21:17 UTC = 03:17 Бишкек — к таймеру бокса 07:30 список уже свежий
-    - cron: "43 9 * * *"   # 09:43 UTC — запасной, если ночной не стартовал
+    # Не в :00 — ровные часы у GitHub перегружены (27.09 запуск на 00:00 стартовал в 04:19).
+    # 22:10 UTC — к таймеру бокса 07:30 Бишкек (01:30 UTC) корейский список уже свежий.
+    - cron: "10 2,6,10,14,18,22 * * *"
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
   group: harvest
   cancel-in-progress: false
+env:
+  SHARDS: "8"
 jobs:
-  harvest:
+  check:
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - run: pip install "requests[socks]"
-      # Код 1 = СБОЙ (живых подозрительно мало) — файлы не перезаписаны, запуск красный, GitHub пришлёт письмо.
-      - name: Сбор и проверка
-        run: python harvest/proxy_harvest.py --out proxies --sources harvest/proxy_sources.txt
+      - run: pip install "requests[socks]" curl_cffi
+      - name: Проверка своей доли кандидатов
+        run: >
+          python harvest/proxy_harvest.py --out proxies --shard ${{ matrix.shard }} --shards $SHARDS
+          --part-out part-${{ matrix.shard }}.json --alive-deadline 1500 --round-deadline 700
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ matrix.shard }}
+          path: part-${{ matrix.shard }}.json
+          retention-days: 1
+
+  merge:
+    needs: check
+    # Сводим и при части упавших осколков (fail-fast выключен): --min-parts решает, хватает ли.
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install "requests[socks]" curl_cffi
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: part-*
+          path: parts
+      # Код 1 = СБОЙ (частей < 6 или живых подозрительно мало) — файлы не перезаписаны, запуск
+      # красный, GitHub пришлёт письмо.
+      - name: Свести осколки
+        run: python harvest/proxy_harvest.py --out proxies --merge parts --shards $SHARDS --min-parts 6
       - name: Сохранить результат
         run: |
           git config user.name "proxy-bot"
           git config user.email "proxy-bot@users.noreply.github.com"
           git add proxies
-          git diff --cached --quiet || git commit -m "proxies: $(date -u +%F)"
+          git diff --cached --quiet || git commit -m "proxies: $(date -u '+%F %H:%M')"
+          git pull --rebase -q || true
           git push
       # Выборочная повторная проверка уже сохранённого списка; < 50 % живых — запуск красный.
       - name: Самопроверка

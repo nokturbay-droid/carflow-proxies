@@ -15,7 +15,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from proxy_harvest import REGIONS, _raise_nofile, pmap, site_ok  # noqa: E402
+from proxy_harvest import REGIONS, _raise_nofile, pmap, site_ok, us_ok  # noqa: E402
 
 
 def main() -> int:
@@ -42,13 +42,20 @@ def main() -> int:
     sample = random.sample(rows, min(a.sample, len(rows)))
 
     def one(r: list[str]) -> bool:
-        return all(site_ok(r[0], s, 15) is not None
-                   for g in r[1].split(",") for s in REGIONS[g].values())
+        return all((us_ok(r[0], 15) is not None) if g == "US" else
+                   all(site_ok(r[0], s, 15) is not None for s in REGIONS[g].values())
+                   for g in r[1].split(","))
 
-    good = sum(1 for r in pmap(one, sample, len(sample) or 1, 300) if r)
-    pct = 100 * good // len(sample) if sample else 0
-    print(f"выборка: {good} из {len(sample)} прямо сейчас пускают на сайты ({pct} %)")
-    bad = age_h > 26 or len(rows) < 20 or pct < 50
+    res = pmap(lambda r: (r, one(r)), sample, len(sample) or 1, 300)
+    # Порог — по не-американским строкам: США — горстка адресов за Imperva, их доля живых скачет
+    # сильнее, и красный запуск из-за неё прятал бы настоящие поломки KR/AE. США печатаем отдельно.
+    main_ = [ok for r, ok in (x for x in res if x) if "US" not in r[1].split(",")]
+    us_ = [ok for r, ok in (x for x in res if x) if "US" in r[1].split(",")]
+    good = sum(main_)
+    pct = 100 * good // len(main_) if main_ else 0
+    print(f"выборка KR/AE/GE: {good} из {len(main_)} прямо сейчас пускают на сайты ({pct} %); "
+          f"США: {sum(us_)} из {len(us_)}")
+    bad = age_h > 10 or len(rows) < 20 or pct < 50
     print("ИТОГ:", "ПРОБЛЕМА" if bad else "OK")
     return 1 if bad else 0
 
